@@ -1,0 +1,83 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f3d2;
+    color: #333;
+    margin: 50px;
+    padding: 0;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: #f4a41a;
+    margin-bottom: 30px;
+  }
+
+  .form {
+    margin-bottom: 40px;
+  }
+
+  .input,
+  select,
+  button {
+    width: 100%;
+    padding: 16px;
+    margin: 12px 0;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #f4a41a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #e4931a;
+  }
+
+  .output {
+    margin-top: 20px;
+  }
+
+  #outputImage {
+    max-width: 100%;
+    height: auto;
+    border: 4px solid #f4a41a;
+    border-radius: 8px;
+  }
+
+  #downloadButton {
+    display: none;
+    margin-top: 20px;
+    background-color: #f4a41a;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  #downloadButton:hover {
+    background-color: #e4931a;
+  }
