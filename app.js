@@ -8,8 +8,10 @@ const { createCanvas, loadImage } = require("canvas");
 const app = express();
 app.use(express.static("public"));
 
+const uploadDir = process.env.UPLOAD_DIR || "uploads/";
+
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: uploadDir,
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   }
@@ -25,13 +27,43 @@ async function drawTextOnImage(imageBuffer, text, leftPosition, topPosition, res
 
   const textWidth = ctx.measureText(text).width;
 
-  const textLeftPosition = leftPosition - textWidth - 240;
-  const textTopPosition = topPosition + ((resizedProductHeight / 2) + 20) ;  // Centered vertically
+  const textLeftPosition = leftPosition - textWidth - 290;
+  const textTopPosition = topPosition + ((resizedProductHeight / 2) + 17) ;  // Centered vertically
 
+  // Drawing vertical line
+  const lineLeftPosition = leftPosition - 80;  // 10 pixels to the left of the uploaded image
+  const lineTopPosition = topPosition;
+  const lineHeight = resizedProductHeight;
+
+  // Drawing horizontal lines at the top and bottom of the vertical line
+  const horizontalLineWidth = 40;
+
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 20;  // Width of the line
+  ctx.beginPath();
+  ctx.moveTo(lineLeftPosition, lineTopPosition);
+  ctx.lineTo(lineLeftPosition, lineTopPosition + lineHeight);
+  ctx.moveTo(lineLeftPosition - horizontalLineWidth / 2, lineTopPosition);
+  ctx.lineTo(lineLeftPosition + horizontalLineWidth / 2, lineTopPosition);
+  ctx.moveTo(lineLeftPosition - horizontalLineWidth / 2, lineTopPosition + lineHeight);
+  ctx.lineTo(lineLeftPosition + horizontalLineWidth / 2, lineTopPosition + lineHeight);
+  ctx.stroke();
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 7;  // Width of the line
+  ctx.beginPath();
+  ctx.moveTo(lineLeftPosition, lineTopPosition);
+  ctx.lineTo(lineLeftPosition, lineTopPosition + lineHeight);
+  ctx.moveTo(lineLeftPosition - horizontalLineWidth / 2, lineTopPosition);
+  ctx.lineTo(lineLeftPosition + horizontalLineWidth / 2, lineTopPosition);
+  ctx.moveTo(lineLeftPosition - horizontalLineWidth / 2, lineTopPosition + lineHeight);
+  ctx.lineTo(lineLeftPosition + horizontalLineWidth / 2, lineTopPosition + lineHeight);
+  ctx.stroke();
+
+  // Drawing text
   ctx.fillStyle = "black";
   ctx.strokeStyle = "white";
   ctx.lineWidth = 18;
-  ctx.font = 'Arial bold 80px sans-serif';
+  ctx.font = 'Arial bold 70px sans-serif';
   ctx.strokeText(text, textLeftPosition, textTopPosition);
   ctx.fillText(text, textLeftPosition, textTopPosition);
 
