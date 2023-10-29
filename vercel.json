@@ -1,18 +1,22 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "app.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/generate",
-        "dest": "app.js"
-      }
-    ],
-    "env": {
-      "UPLOAD_DIR": "/tmp"
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/generate",
+      "dest": "/api/generate.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "env": {
+    "UPLOAD_DIR": "uploads"
   }
+}

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("referenceImage", referenceImage.value);
 
     try {
-      const response = await fetch("/generate", {
+      const response = await fetch("/api/generate", {
         method: "POST",
         body: formData
       });
